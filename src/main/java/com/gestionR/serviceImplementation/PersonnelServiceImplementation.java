@@ -5,7 +5,4 @@ import com.gestionR.service.PersonnelService;
 
 @Service
 public class PersonnelServiceImplementation implements PersonnelService {
-	
-	
-
 }

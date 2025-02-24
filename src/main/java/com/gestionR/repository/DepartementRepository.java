@@ -6,5 +6,4 @@ import com.gestionR.models.Administratif;
 import com.gestionR.models.Departement;
 
 public interface DepartementRepository extends MongoRepository<Departement, String>{
-
 }

@@ -6,7 +6,6 @@ import com.gestionR.models.Soumission;
 
 
 public interface SoumissionService {
-	
 	public Soumission AjouterSoumission(Soumission soumission);
 	public List<Soumission> afficherSoumissions();
 	public List<Soumission> afficherSoumissionOffre(String id);

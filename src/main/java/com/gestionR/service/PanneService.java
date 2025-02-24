@@ -6,10 +6,8 @@ import java.util.Optional;
 import com.gestionR.models.Panne;
 
 public interface PanneService {
+	 void ajouterPanne(Panne panne);
+	 List<Panne> ListerPannes();
+	 Panne findByIdPanne(String id);
 
-	
-	public void ajouterPanne(Panne panne);
-	public List<Panne> ListerPannes();
-	public Panne findByIdPanne(String id);
-	
 }

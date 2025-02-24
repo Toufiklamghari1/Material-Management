@@ -1,54 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
 
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-        <div class="container">
-          <div class="row">
+
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
+        <div class="row">
             <div class="col-md-8">
-              <div class="card" style="width: 900px;">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Detail Offre</h4>
-                  <p class="card-category">Detail</p>
+                <div class="card" style="width: 900px;">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Detail Offre</h4>
+                        <p class="card-category">Detail</p>
+                    </div>
+
+                    <div>
+                        <div class="card" style="width: 50rem;">
+                            <div class="card-body">
+                                <h3 class="card-title" style="margin-bottom :20px;font-weight: bold;color:#9c27b0;">
+                                    Detail de l'offre</h3>
+                                <p class="card-text">titre de l'offre : <span th:text="${offre.titreOffre}"></span></p>
+                                <p class="card-text">Date de dï¿½but : <span th:text="${offre.DateDebut}"></span></p>
+                                <p class="card-text">Date de Fin : <span th:text="${offre.DateFin}"></span></p>
+                                <p class="card-text">Ressources demandï¿½es : <span></span></p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!-- contenu -->
+
+                    </div>
+
+
                 </div>
-                
-                <div>
-                	<div class="card" style="width: 50rem;">
-					  <div class="card-body">
-					    <h3 class="card-title" style="margin-bottom :20px;font-weight: bold;color:#9c27b0;">Detail de l'offre</h3>
-					    <p class="card-text">titre de l'offre : <span th:text="${offre.titreOffre}"></span></p>
-					    <p class="card-text">Date de début : <span th:text="${offre.DateDebut}"></span></p>
-					    <p class="card-text">Date de Fin : <span th:text="${offre.DateFin}"></span></p>
-					    <p class="card-text">Ressources demandées : <span ></span></p>
-					  
-					 
-					  </div>
-					</div>
-                </div>
-                <div>
-               <!-- contenu -->
-						
-						</div>
-                      
-                
-                </div>
-              </div>
             </div>
-            
-          </div>
         </div>
-   
-  
-  
+
+    </div>
+</div>
+
+
 </body>
 
 </html>

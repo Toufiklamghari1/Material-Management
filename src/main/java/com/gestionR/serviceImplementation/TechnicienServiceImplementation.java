@@ -17,5 +17,4 @@ public class TechnicienServiceImplementation implements TechnicienService{
 		List<Technicien> list =technicienRep.findAll();
 		return list;
 	}
-
 }

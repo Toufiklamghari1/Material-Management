@@ -1,13 +1,10 @@
 package com.gestionR.models;
 
 public enum ERole {
-	
   ROLE_FOURNISSEUR,
   ROLE_CHEF_DEPARTEMENT,
   ROLE_RESPO_RESSOURCES,
   ROLE_TECHNICIEN,
   ROLE_ENSEIGNANT,
   ROLE_ADMINISTRATIF
-  
-  
 }

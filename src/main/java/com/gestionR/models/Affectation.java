@@ -3,12 +3,9 @@ package com.gestionR.models;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Document(collection = "Affectation")
 public class Affectation {
-
     private String persID;
     private String ressourceNum;
     private String dateAffectaion;

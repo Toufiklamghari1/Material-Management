@@ -9,5 +9,5 @@ import com.gestionR.models.Technicien;
 
 @Repository
 public interface TechnicienRepository extends MongoRepository<Technicien, String>{
-	public Technicien findByEmail(String email);
+	Technicien findByEmail(String email);
 }

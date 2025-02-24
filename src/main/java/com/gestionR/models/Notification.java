@@ -8,8 +8,7 @@ public class Notification {
 		private String name;
 		private String message;
 		private String idRessource;
-		
-		
+
 		public String getIdDerstination() {
 			return idDerstination;
 		}
@@ -34,6 +33,6 @@ public class Notification {
 		public void setIdRessource(String idRessource) {
 			this.idRessource = idRessource;
 		}
-		
-		
+
+
 }

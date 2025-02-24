@@ -9,7 +9,6 @@ import com.gestionR.models.Administratif;
 
 @Repository
 public interface AdministratifRepository extends MongoRepository<Administratif, String>{
-
 	public Administratif findByEmail(String email);
 
 }

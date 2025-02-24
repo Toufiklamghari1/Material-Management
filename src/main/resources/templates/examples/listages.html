@@ -1,248 +1,269 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
 
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-      <div class="container">
+
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
         <div class="row">
-          <div class="col-md-11">
-            <div class="card">
-              <div class="card-header card-header-primary">
-                <ul class="nav nav-pills nav-pills-primary h4" role="tablist">
-                  <li class="nav-item w-30 ">
-                    <a class="nav-link active text-white text-center" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true">
-                      Enseignants
-                    </a>
-                  </li>
-                  <li class="nav-item w-30">
-                    <a class="nav-link text-white text-center" data-toggle="tab" href="#link4" role="tablist" aria-expanded="false">
-                      Techniciens
-                    </a>
-                  </li>
-                  <li class="nav-item w-30">
-                    <a class="nav-link text-white text-center" data-toggle="tab" href="#link5" role="tablist" aria-expanded="false">
-                      Fournisseurs
-                    </a>
-                  </li>
-                  
-                  <li class="nav-item w-30">
-                    <a class="nav-link text-white text-center" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false">
-                      Ordinateures
-                    </a>
-                  </li>
-                  <li class="nav-item w-30">
-                    <a class="nav-link text-white text-center" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false">
-                      Imprimantes
-                    </a>
-                  </li>
-                  
-                </ul>
-              </div>
-              <div class="card-body">
-                <div class="tab-content tab-space">
-                  <div class="tab-pane active" id="link1" aria-expanded="true">
-                    <div>
-                      <!-- materiel table -->
-                      <table class="table">
-                        <thead>
-                        <tr>
-                          <th class="w-25 text-center">Nom</th>
-                          <th class="w-25 text-center">Mail</th>
-                          <th class="w-25 text-center">Laboratoire</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <th:block th:each="enseignant : ${enseignants}">
-                          <tr>
-                            <td class="w-25 text-center"  th:text="${enseignant.getUsername()}"></td>
-                            <td class="w-25 text-center"  th:text="${enseignant.getEmail()}"></td>
-                            <td class="w-25 text-center" th:text="${enseignant.getLab()}"></td>
-                          </tr>
-                        </th:block>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                 
-                  <div class="tab-pane" id="link2" aria-expanded="false">
-                    <div>
-                      <!-- besoin table -->
-                      <table class="table">
-                        <thead>
-                        <tr>
-                          <th class="w-20 text-center">Marque</th>
-                          <th class="w-15 text-center">CPU</th>
-                          <th class="w-15 text-center">RAM</th>
-                          <th class="w-15 text-center">ROM</th>
-                          <th class="w-15 text-center">ECRAN</th>
-                          <th class="w-20 text-center">Actions</th>
-                          <!-- <th class="text-center">Action</th>  -->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <th:block th:each="ordinateure : ${ordinateurs}">
-                          <tr>
-                            <td class="w-20 text-center"  th:text="${ordinateure.marque}"></td>
-                            <td class="w-15 text-center"  th:text="${ordinateure.cpu}"></td>
-                            <td class="w-15 text-center"  th:text="${ordinateure.ram}"></td>
-                            <td class="w-15 text-center"  th:text="${ordinateure.rom}"></td>
-                            <td class="w-15 text-center"  th:text="${ordinateure.ecran}"></td>
-                            <td class="w-20 text-center">
-                            	 <a th:href="@{/PageModifierOrdinateur(id=${ordinateure.id})}" class="btn btn-primary"> Modifier</a>
-                            	  <a th:href="@{/PageSupprimerOrdinateur(id=${ordinateure.id})}" class="btn btn-danger"> Supprimer</a>
-                            </td>
-                          </tr>
-                        </th:block>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="link3" aria-expanded="false">
-	                    <div>
-	                      <!-- besoin table -->
-	                      <table class="table imprimante-table">
-	                        <thead>
-	                        <tr>
-	                          
-	                          <th class="w-15 text-center">Marque</th>
-	                          <th class="w-15 text-center">Resolution</th>
-	                          <th class="w-15 text-center">Vetesse d'impression</th>
-	                          <th class="w-20 text-center">Actions</th>
-	                        </tr>
-	                        </thead>
-	                        <tbody>
-	                        <th:block th:each="imprimante : ${imprimantes}">
-	                          <tr>
-	                            <td class="w-15  text-center"  th:text="${imprimante.marque}"></td>
-	                            <td class="w-15 text-center" th:text="${imprimante.resolution}"></td>
-	                            <td class="w-15 text-center" th:text="${imprimante.getVetesseImpristion()}"></td>
-	                            <td class="w-20 text-center">
-	                            	<a th:href="@{/PageModifierImprimante(id=${imprimante.id})}" class="btn btn-primary"> Modifier</a>
-                            	  	<a th:href="@{/PageSupprimerImprimante(id=${imprimante.id})}" class="btn btn-danger"> Supprimer</a>
-	                            </td>
-	                          </tr>
-	                        </th:block>
-	                        </tbody>
-	                      </table>
-	                    </div>
-                    </div>
-						<div class="tab-pane" id="link4" aria-expanded="false">
-                    <div>
-                      <!-- materiel table -->
-                      <table class="table">
-                        <thead>
-                        <tr>
-                          <th class="w-25 text-center">Nom</th>
-                          <th class="w-25 text-center">Mail</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        	<th:block th:each="technicien : ${Techniciens}">
-	                          <tr>
-	                            <td class="w-25 text-center"  th:text="${technicien.getUsername()}"></td>
-	                            <td class="w-25 text-center" th:text="${technicien.getEmail()}"></td>
-	                          </tr>
-	                        </th:block>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+            <div class="col-md-11">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <ul class="nav nav-pills nav-pills-primary h4" role="tablist">
+                            <li class="nav-item w-30 ">
+                                <a class="nav-link active text-white text-center" data-toggle="tab" href="#link1"
+                                   role="tablist" aria-expanded="true">
+                                    Enseignants
+                                </a>
+                            </li>
+                            <li class="nav-item w-30">
+                                <a class="nav-link text-white text-center" data-toggle="tab" href="#link4"
+                                   role="tablist" aria-expanded="false">
+                                    Techniciens
+                                </a>
+                            </li>
+                            <li class="nav-item w-30">
+                                <a class="nav-link text-white text-center" data-toggle="tab" href="#link5"
+                                   role="tablist" aria-expanded="false">
+                                    Fournisseurs
+                                </a>
+                            </li>
 
-						<div class="tab-pane" id="link5" aria-expanded="false">
-                    <div>
-                      <!-- materiel table -->
-                      <table class="table">
-                        <thead>
-                        <tr>
-                          	         <th class="w-25 text-center">Nom</th>
-						            <th class="w-25 text-center">Societe</th>
-						            <th class="w-25 text-center">Gerant</th>
-						            <th class="w-25 text-center">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        	<tr th:each="fournisseur : ${fournisseurs}" >
-						            <td class="w-25 text-center" th:text="${fournisseur.username} "></td>
-						            
-						            <td class="w-25 text-center" th:text="${fournisseur.nomSociete}"></td>
-						            <td class="w-25 text-center" th:text="${fournisseur.gerant}"></td>
-						            <td class="w-25 td-actions text-center" >
-						            	 <form th:action="@{/ajouterBlackList}" method="get"  th:if="${fournisseur.isblocked == false}">
-						            	 <div class="form-inline" >
-						            	 <input type="text" placeholder="ajouter un motif" name="motif" class="form-control input-md " required/>
-						            	  <input type="submit" value="ajouter à la blacklist" />
-						            	  <input type="hidden" name="idf" th:value="${fournisseur.idFourniseur}" />
-						            	 </div>
-						                 
-						                </form>
-						               <a   th:if="${fournisseur.isblocked == true }"  th:href="@{/supprimerBlackList(id=${fournisseur.idFourniseur})}"> <button type="button" rel="tooltip" class="btn btn-success">
-						                  enlever de la blacklist
-						                </button></a>
-						            </td>
-						        </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-						
-						
-                  </div>
-                </div>
+                            <li class="nav-item w-30">
+                                <a class="nav-link text-white text-center" data-toggle="tab" href="#link2"
+                                   role="tablist" aria-expanded="false">
+                                    Ordinateures
+                                </a>
+                            </li>
+                            <li class="nav-item w-30">
+                                <a class="nav-link text-white text-center" data-toggle="tab" href="#link3"
+                                   role="tablist" aria-expanded="false">
+                                    Imprimantes
+                                </a>
+                            </li>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmer L'affectation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body text-center">
-                        <form class="text-black">
-                          <div class="form-check form-check-radio">
-                            <h3>La ressource est-il paratger ?</h3>
-                            <label class="form-check-label">
-                              <input type="radio" id="non" class="form-check-input" name="confirmer" value="non" checked>
-                              <label for="non">Non</label>
-                              <span class="circle">
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content tab-space">
+                            <div class="tab-pane active" id="link1" aria-expanded="true">
+                                <div>
+                                    <!-- materiel table -->
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="w-25 text-center">Nom</th>
+                                            <th class="w-25 text-center">Mail</th>
+                                            <th class="w-25 text-center">Laboratoire</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="enseignant : ${enseignants}">
+                                            <tr>
+                                                <td class="w-25 text-center" th:text="${enseignant.getUsername()}"></td>
+                                                <td class="w-25 text-center" th:text="${enseignant.getEmail()}"></td>
+                                                <td class="w-25 text-center" th:text="${enseignant.getLab()}"></td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="link2" aria-expanded="false">
+                                <div>
+                                    <!-- besoin table -->
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="w-20 text-center">Marque</th>
+                                            <th class="w-15 text-center">CPU</th>
+                                            <th class="w-15 text-center">RAM</th>
+                                            <th class="w-15 text-center">ROM</th>
+                                            <th class="w-15 text-center">ECRAN</th>
+                                            <th class="w-20 text-center">Actions</th>
+                                            <!-- <th class="text-center">Action</th>  -->
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="ordinateure : ${ordinateurs}">
+                                            <tr>
+                                                <td class="w-20 text-center" th:text="${ordinateure.marque}"></td>
+                                                <td class="w-15 text-center" th:text="${ordinateure.cpu}"></td>
+                                                <td class="w-15 text-center" th:text="${ordinateure.ram}"></td>
+                                                <td class="w-15 text-center" th:text="${ordinateure.rom}"></td>
+                                                <td class="w-15 text-center" th:text="${ordinateure.ecran}"></td>
+                                                <td class="w-20 text-center">
+                                                    <a th:href="@{/PageModifierOrdinateur(id=${ordinateure.id})}"
+                                                       class="btn btn-primary"> Modifier</a>
+                                                    <a th:href="@{/PageSupprimerOrdinateur(id=${ordinateure.id})}"
+                                                       class="btn btn-danger"> Supprimer</a>
+                                                </td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="link3" aria-expanded="false">
+                                <div>
+                                    <!-- besoin table -->
+                                    <table class="table imprimante-table">
+                                        <thead>
+                                        <tr>
+
+                                            <th class="w-15 text-center">Marque</th>
+                                            <th class="w-15 text-center">Resolution</th>
+                                            <th class="w-15 text-center">Vetesse d'impression</th>
+                                            <th class="w-20 text-center">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="imprimante : ${imprimantes}">
+                                            <tr>
+                                                <td class="w-15  text-center" th:text="${imprimante.marque}"></td>
+                                                <td class="w-15 text-center" th:text="${imprimante.resolution}"></td>
+                                                <td class="w-15 text-center"
+                                                    th:text="${imprimante.getVetesseImpristion()}"></td>
+                                                <td class="w-20 text-center">
+                                                    <a th:href="@{/PageModifierImprimante(id=${imprimante.id})}"
+                                                       class="btn btn-primary"> Modifier</a>
+                                                    <a th:href="@{/PageSupprimerImprimante(id=${imprimante.id})}"
+                                                       class="btn btn-danger"> Supprimer</a>
+                                                </td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="link4" aria-expanded="false">
+                                <div>
+                                    <!-- materiel table -->
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="w-25 text-center">Nom</th>
+                                            <th class="w-25 text-center">Mail</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="technicien : ${Techniciens}">
+                                            <tr>
+                                                <td class="w-25 text-center" th:text="${technicien.getUsername()}"></td>
+                                                <td class="w-25 text-center" th:text="${technicien.getEmail()}"></td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="link5" aria-expanded="false">
+                                <div>
+                                    <!-- materiel table -->
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="w-25 text-center">Nom</th>
+                                            <th class="w-25 text-center">Societe</th>
+                                            <th class="w-25 text-center">Gerant</th>
+                                            <th class="w-25 text-center">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="fournisseur : ${fournisseurs}">
+                                            <td class="w-25 text-center" th:text="${fournisseur.username} "></td>
+
+                                            <td class="w-25 text-center" th:text="${fournisseur.nomSociete}"></td>
+                                            <td class="w-25 text-center" th:text="${fournisseur.gerant}"></td>
+                                            <td class="w-25 td-actions text-center">
+                                                <form th:action="@{/ajouterBlackList}" method="get"
+                                                      th:if="${fournisseur.isblocked == false}">
+                                                    <div class="form-inline">
+                                                        <input type="text" placeholder="ajouter un motif" name="motif"
+                                                               class="form-control input-md " required/>
+                                                        <input type="submit" value="ajouter ï¿½ la blacklist"/>
+                                                        <input type="hidden" name="idf"
+                                                               th:value="${fournisseur.idFourniseur}"/>
+                                                    </div>
+
+                                                </form>
+                                                <a th:if="${fournisseur.isblocked == true }"
+                                                   th:href="@{/supprimerBlackList(id=${fournisseur.idFourniseur})}">
+                                                    <button type="button" rel="tooltip" class="btn btn-success">
+                                                        enlever de la blacklist
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmer L'affectation</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <form class="text-black">
+                                        <div class="form-check form-check-radio">
+                                            <h3>La ressource est-il paratger ?</h3>
+                                            <label class="form-check-label">
+                                                <input type="radio" id="non" class="form-check-input" name="confirmer"
+                                                       value="non" checked>
+                                                <label for="non">Non</label>
+                                                <span class="circle">
                                     <span class="check"></span>
                                   </span>
-                            </label>
-                            <label class="form-check-label">
-                              <input type="radio" id="oui" class="form-check-input" name="confirmer" value="oui">
-                              <label for="oui">Oui</label>
-                              <span class="circle">
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input type="radio" id="oui" class="form-check-input" name="confirmer"
+                                                       value="oui">
+                                                <label for="oui">Oui</label>
+                                                <span class="circle">
                                     <span class="check"></span>
                                   </span>
-                            </label>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                            <button type="button"  class="btn btn-primary confirme-affectation">Confirmer</button>
-                          </div>
-                        </form>
-                      </div>
+                                            </label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Fermer
+                                            </button>
+                                            <button type="button" class="btn btn-primary confirme-affectation">
+                                                Confirmer
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+</div>
+</div>
 </div>
 </body>
 

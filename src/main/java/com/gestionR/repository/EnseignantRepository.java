@@ -7,9 +7,5 @@ import com.gestionR.models.Enseignant;
 
 @Repository
 public interface EnseignantRepository extends MongoRepository<Enseignant, String> {
-
-
 	public Enseignant findByEmail(String email);
-	 
-	
 }

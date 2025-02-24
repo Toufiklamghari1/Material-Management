@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
 
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-               <div class="container">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="card" style="width: 900px;">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Detail Panne</h4>
-                  <p class="card-category">Detail</p>
-                </div>
-                
-                <div>
-                	<div class="card" style="width: 50rem;">
-					  <div class="card-body">
-					    <h3 class="card-title" style="margin-bottom :20px;font-weight: bold;color:#9c27b0;">Detail de Panne</h3>
-					    <p class="card-text">Date d'Apparition : <span th:text="${Panne.dateApparition}"></span></p>
-					    <p class="card-text">Frequence d'Apparition : <span th:text="${Panne.frequence}"></span></p>
-					    <p class="card-text">Type de Panne: <span th:text="${Panne.ordreLogiciel}"></span></p>
-					    <p class="card-text">Explication : <span th:text="${Panne.explication}"></span></p>
-					    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Ajouter un Constat </button>
-					  </div>
-					</div>
-                </div>
-                      
-                
-                </div>
-              </div>
-            </div>
-             <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-       <form method="post" th:action="@{/constat}" th:object="${constat}" >
-      <div class="modal-body">
-        
-                 
-                    <div class="row">
-                      <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">description</label>
-                          <textarea  class="form-control" th:field="*{description}"></textarea>
-                        </div>
-                      </div>
-                      </div>
-                      <div class="clearfix"></div>
-					<div class="row">
-                      <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
-                        <div class="form-group">
-							    <select class="form-control" th:field="*{ordrePanne}">
-							    		<option  th:text="${Panne.ordreLogiciel}" th:value="${Panne.ordreLogiciel}"></option>
-							    </select>
-                         
-                        </div>
-                      </div>
-                      </div>
-                    
-           </div>      
-               
-       <div class="clearfix"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
-      </div>
-       </form>
-    </div>
-  </div>
-</div>
-          </div>
-        </div>
-      
-          
 
-  
-  
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card" style="width: 900px;">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Detail Panne</h4>
+                        <p class="card-category">Detail</p>
+                    </div>
+
+                    <div>
+                        <div class="card" style="width: 50rem;">
+                            <div class="card-body">
+                                <h3 class="card-title" style="margin-bottom :20px;font-weight: bold;color:#9c27b0;">
+                                    Detail de Panne</h3>
+                                <p class="card-text">Date d'Apparition : <span th:text="${Panne.dateApparition}"></span>
+                                </p>
+                                <p class="card-text">Frequence d'Apparition : <span th:text="${Panne.frequence}"></span>
+                                </p>
+                                <p class="card-text">Type de Panne: <span th:text="${Panne.ordreLogiciel}"></span></p>
+                                <p class="card-text">Explication : <span th:text="${Panne.explication}"></span></p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal"> Ajouter un Constat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" th:action="@{/constat}" th:object="${constat}">
+                        <div class="modal-body">
+
+
+                            <div class="row">
+                                <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">description</label>
+                                        <textarea class="form-control" th:field="*{description}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
+                                    <div class="form-group">
+                                        <select class="form-control" th:field="*{ordrePanne}">
+                                            <option th:text="${Panne.ordreLogiciel}"
+                                                    th:value="${Panne.ordreLogiciel}"></option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 </html>

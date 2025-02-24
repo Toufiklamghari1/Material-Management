@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface OrdinateurRepository extends MongoRepository<Ordinateure, String> {
-
     @Query("{ 'isAffected' : ? }")
     List<Ordinateure> findByAffected(boolean affected);
 }

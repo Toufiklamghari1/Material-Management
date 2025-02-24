@@ -7,7 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 public abstract class Ressource{
-
 	@Id
     private String id;
     private boolean isAffected = false;

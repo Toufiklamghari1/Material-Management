@@ -7,7 +7,6 @@ import java.util.List;
 
 @Document(collection = "Besoins")
 public class Besoin  {
-
     @Id
     private String id;
     private String persID;

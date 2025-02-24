@@ -9,14 +9,13 @@ import com.gestionR.service.SoumissionService;
 
 @Service
 public class SoumissionServiceImplemnt implements SoumissionService{
-
 	@Autowired
 	SoumissionRepository soumR;
-	
+
 	@Override
 	public Soumission AjouterSoumission(Soumission soumission) {
 		return soumR.save(soumission);
-		
+
 	}
 
 	@Override
@@ -26,23 +25,19 @@ public class SoumissionServiceImplemnt implements SoumissionService{
 
 	@Override
 	public List<Soumission> afficherSoumissionOffre(String idoffre) {
-		
+
 		return soumR.findByIdoffre(idoffre);
 	}
 
 	@Override
 	public Soumission chercherSoumissionId(String id_soum) {
-		 
+
 		return soumR.findBySoum(id_soum);
 	}
 
 	@Override
 	public List<Soumission> soumissionAcceptee(String idFour) {
-		
+
 		return soumR.findByFournisseurAplicants(idFour);
 	}
-
-	
-	
-
 }

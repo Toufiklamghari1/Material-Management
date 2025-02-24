@@ -1,71 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
 
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-        <div class="container">
-          <div class="row">
+
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
-              <div class="card" style="width: 900px;">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Les Fournisseurs</h4>
-                
+                <div class="card" style="width: 900px;">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Les Fournisseurs</h4>
+
+
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Nom</th>
+
+                            <th class="text-center">Societe</th>
+                            <th class="text-center">Gerant</th>
+
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="fournisseur : ${fournisseurs}">
+                            <td class="text-center" th:text="${fournisseur.username} "></td>
+
+                            <td class="text-center" th:text="${fournisseur.nomSociete}"></td>
+                            <td class="text-center" th:text="${fournisseur.gerant}"></td>
+                            <td class="td-actions text-center">
+                                <form th:action="@{/ajouterBlackList}" method="get"
+                                      th:if="${fournisseur.isblocked == false}">
+                                    <div class="form-inline">
+                                        <input type="text" placeholder="ajouter un motif" name="motif"
+                                               class="form-control input-md " required/>
+                                        <input type="submit" value="ajouter ï¿½ la blacklist"/>
+                                        <input type="hidden" name="idf" th:value="${fournisseur.idFourniseur}"/>
+                                    </div>
+
+                                </form>
+                                <a th:if="${fournisseur.isblocked == true }"
+                                   th:href="@{/supprimerBlackList(id=${fournisseur.idFourniseur})}">
+                                    <button type="button" rel="tooltip" class="btn btn-success">
+                                        enlever de la blacklist
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
 
                 </div>
-                
-                <table class="table">
-						    <thead>
-						        <tr>
-						            <th class="text-center">Nom</th>
-						            
-						            <th class="text-center">Societe</th>
-						            <th class="text-center">Gerant</th>
-			
-						            <th >Actions</th>
-						        </tr>
-						    </thead>
-						    <tbody>
-						        <tr th:each="fournisseur : ${fournisseurs}" >
-						            <td class="text-center" th:text="${fournisseur.username} "></td>
-						            
-						            <td class="text-center" th:text="${fournisseur.nomSociete}"></td>
-						            <td class="text-center" th:text="${fournisseur.gerant}"></td>
-						            <td class="td-actions text-center" >
-						            	 <form th:action="@{/ajouterBlackList}" method="get"  th:if="${fournisseur.isblocked == false}">
-						            	 <div class="form-inline" >
-						            	 <input type="text" placeholder="ajouter un motif" name="motif" class="form-control input-md " required/>
-						            	  <input type="submit" value="ajouter à la blacklist" />
-						            	  <input type="hidden" name="idf" th:value="${fournisseur.idFourniseur}" />
-						            	 </div>
-						                 
-						                </form>
-						               <a   th:if="${fournisseur.isblocked == true }"  th:href="@{/supprimerBlackList(id=${fournisseur.idFourniseur})}"> <button type="button" rel="tooltip" class="btn btn-success">
-						                  enlever de la blacklist
-						                </button></a>
-						            </td>
-						        </tr>
-						
-						    </tbody>
-						</table>
-                      
-                
-                </div>
-              </div>
             </div>
-            
-          </div>
         </div>
-    
-  
+
+    </div>
+</div>
+
+
 </body>
 
 </html>

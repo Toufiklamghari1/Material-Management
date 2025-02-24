@@ -6,132 +6,118 @@ import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class SoumissionAfficher {
-	
+    private String id;
 
-	
-	
-	private String id;
-	
-	private String budget_proposee;
-	
-	private Date date_prevue_livraison;
-	
-	private String nomFournisseur;
-	
-	private String gerant;
-	
-	private String lieuSociete;
-	
-	private String nomSociete;
-	
-	private String idFournisseur;
-	
-	private boolean isblocked;
-	
-	private boolean isSubmitted;
-	
-	
-	public boolean isSubmitted() {
-		return isSubmitted;
-	}
+    private String budget_proposee;
 
-	public void setSubmitted(boolean isSubmitted) {
-		this.isSubmitted = isSubmitted;
-	}
+    private Date date_prevue_livraison;
 
-	public boolean isIsblocked() {
-		return isblocked;
-	}
+    private String nomFournisseur;
 
-	public void setIsblocked(boolean isblocked) {
-		this.isblocked = isblocked;
-	}
+    private String gerant;
 
-	
+    private String lieuSociete;
 
-	public SoumissionAfficher(String budget_proposee, Date date_prevue_livraison, String nomFournisseur, String gerant,
-			String lieuSociete, String nomSociete) {
-		super();
-		this.budget_proposee = budget_proposee;
-		this.date_prevue_livraison = date_prevue_livraison;
-		this.nomFournisseur = nomFournisseur;
-		this.gerant = gerant;
-		this.lieuSociete = lieuSociete;
-		this.nomSociete = nomSociete;
-	}
+    private String nomSociete;
 
-	public SoumissionAfficher() {
-		super();
-		
-	}
+    private String idFournisseur;
 
-	public String getId() {
-		return id;
-	}
+    private boolean isblocked;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private boolean isSubmitted;
 
-	public String getBudget_proposee() {
-		return budget_proposee;
-	}
+    public boolean isSubmitted() {
+        return isSubmitted;
+    }
 
-	public void setBudget_proposee(String budget_proposee) {
-		this.budget_proposee = budget_proposee;
-	}
+    public void setSubmitted(boolean isSubmitted) {
+        this.isSubmitted = isSubmitted;
+    }
 
-	public Date getDate_prevue_livraison() {
-		return date_prevue_livraison;
-	}
+    public boolean isIsblocked() {
+        return isblocked;
+    }
 
-	public void setDate_prevue_livraison(Date date_prevue_livraison) {
-		this.date_prevue_livraison = date_prevue_livraison;
-	}
+    public void setIsblocked(boolean isblocked) {
+        this.isblocked = isblocked;
+    }
 
-	public String getNomFournisseur() {
-		return nomFournisseur;
-	}
+    public SoumissionAfficher(String budget_proposee, Date date_prevue_livraison, String nomFournisseur, String gerant,
+                              String lieuSociete, String nomSociete) {
+        super();
+        this.budget_proposee = budget_proposee;
+        this.date_prevue_livraison = date_prevue_livraison;
+        this.nomFournisseur = nomFournisseur;
+        this.gerant = gerant;
+        this.lieuSociete = lieuSociete;
+        this.nomSociete = nomSociete;
+    }
 
-	public void setNomFournisseur(String nomFournisseur) {
-		this.nomFournisseur = nomFournisseur;
-	}
+    public SoumissionAfficher() {
+        super();
+    }
 
-	public String getGerant() {
-		return gerant;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setGerant(String gerant) {
-		this.gerant = gerant;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getLieuSociete() {
-		return lieuSociete;
-	}
+    public String getBudget_proposee() {
+        return budget_proposee;
+    }
 
-	public void setLieuSociete(String lieuSociete) {
-		this.lieuSociete = lieuSociete;
-	}
+    public void setBudget_proposee(String budget_proposee) {
+        this.budget_proposee = budget_proposee;
+    }
 
-	public String getNomSociete() {
-		return nomSociete;
-	}
+    public Date getDate_prevue_livraison() {
+        return date_prevue_livraison;
+    }
 
-	public void setNomSociete(String nomSociete) {
-		this.nomSociete = nomSociete;
-	}
+    public void setDate_prevue_livraison(Date date_prevue_livraison) {
+        this.date_prevue_livraison = date_prevue_livraison;
+    }
 
-	public String getIdFournisseur() {
-		return idFournisseur;
-	}
+    public String getNomFournisseur() {
+        return nomFournisseur;
+    }
 
-	public void setIdFournisseur(String idFournisseur) {
-		this.idFournisseur = idFournisseur;
-	}
-	
-	
+    public void setNomFournisseur(String nomFournisseur) {
+        this.nomFournisseur = nomFournisseur;
+    }
 
-	
-	
+    public String getGerant() {
+        return gerant;
+    }
 
+    public void setGerant(String gerant) {
+        this.gerant = gerant;
+    }
+
+    public String getLieuSociete() {
+        return lieuSociete;
+    }
+
+    public void setLieuSociete(String lieuSociete) {
+        this.lieuSociete = lieuSociete;
+    }
+
+    public String getNomSociete() {
+        return nomSociete;
+    }
+
+    public void setNomSociete(String nomSociete) {
+        this.nomSociete = nomSociete;
+    }
+
+    public String getIdFournisseur() {
+        return idFournisseur;
+    }
+
+    public void setIdFournisseur(String idFournisseur) {
+        this.idFournisseur = idFournisseur;
+    }
 }

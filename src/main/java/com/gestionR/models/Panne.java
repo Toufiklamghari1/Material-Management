@@ -10,23 +10,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "Pannes")
 public class Panne {
-
-	
 	@Id
 	private String idPanne;
 	private String idRessource;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateApparition;
-	
+
 	private String explication;
-	
+
 	private FrequencePanne frequence;
-	
+
 	private  OrdreLogiciel ordreLogiciel;
-	
+
 	private User personne;
-	
-	
 	/*
 	@DBRef
 	private Ressource ressource;
@@ -68,9 +64,6 @@ public class Panne {
 		super();
 	}
 
-	
-
-
 	public Panne(Date dateApparition, String explication, FrequencePanne frequence, OrdreLogiciel ordreLogiciel) {
 		super();
 		this.dateApparition = dateApparition;
@@ -102,7 +95,4 @@ public class Panne {
 	public void setDateApparition(Date dateApparition) {
 		this.dateApparition = dateApparition;
 	}
-	
-	
-	
 }

@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ImprimanteRepository extends MongoRepository<Imprimante, String> {
-
     @Query("{ 'isAffected' : ?0 }")
     List<Imprimante> findByAffected(boolean affected);
 }

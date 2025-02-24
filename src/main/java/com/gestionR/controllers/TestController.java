@@ -13,10 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class TestController {
 	@GetMapping("/all")
 	public ModelAndView allAccess() {
-		
 		return new ModelAndView("examples/dashboard");
 	}
-	
+
 	@GetMapping("/user")
 	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 	public String userAccess() {

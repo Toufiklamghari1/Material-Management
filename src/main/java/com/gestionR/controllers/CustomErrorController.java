@@ -19,10 +19,9 @@ public class CustomErrorController implements ErrorController {
 	public String getErrorPath() {
 		return "/error";
 	}
-	
+
 	@GetMapping("/error")
 	public ModelAndView handleError(HttpServletRequest request) {
-		
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 		Map<String, Object> M = new HashMap<String, Object>();
 		M.put("status", status);

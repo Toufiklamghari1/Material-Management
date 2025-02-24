@@ -1,139 +1,138 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
-
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-        <div class="container">
-          <div class="row">
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
+        <div class="row">
             <div class="col-md-8">
-              <div class="card" style="width: 900px;">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Les Appels D'offres</h4>
-                  <div class="col-md-4 float-right">
-					    <button id="button1id" name="button1id" class="btn btn-secondary " data-toggle="modal" data-target="#AddOffre">Ajouter Appel D'offre</button>
-					  </div>
-                  <p class="card-category">Les Appels D'offres</p>
+                <div class="card" style="width: 900px;">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Les Appels D'offres</h4>
+                        <div class="col-md-4 float-right">
+                            <button id="button1id" name="button1id" class="btn btn-secondary " data-toggle="modal"
+                                    data-target="#AddOffre">Ajouter Appel D'offre
+                            </button>
+                        </div>
+                        <p class="card-category">Les Appels D'offres</p>
+
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">titre</th>
+
+                            <th class="text-center">Date debut de l'offre</th>
+                            <th class="text-center">Date fin de l'offre</th>
+                            <th class="text-center">etat</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="offre: ${offres}">
+                            <td class="text-center" th:text="${offre.titreOffre}">titre</td>
+
+                            <td class="text-center" th:text="${offre.DateDebut}">date debut</td>
+                            <td class="text-center" th:text="${offre.DateFin}">2013</td>
+                            <td class="text-center">
+                                <button type="button" rel="tooltip" class="btn btn-info" th:text="${offre.etat}">etat
+                                </button>
+                            </td>
+                            <td class="td-actions text-center">
+                                <a th:href="@{/detailOffre(id=${offre.idoffre})}">
+                                    <button type="button" rel="tooltip" class="btn btn-success">
+                                        <i class="material-icons">info</i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
 
                 </div>
-                
-                <table class="table">
-						    <thead>
-						        <tr>
-						            <th class="text-center">titre</th>
-						            
-						            <th class="text-center">Date debut de l'offre</th>
-						            <th class="text-center">Date fin de l'offre</th>
-						            <th class="text-center">etat</th>
-						            <th class="text-center">Actions</th>
-						        </tr>
-						    </thead>
-						    <tbody>
-						        <tr th:each="offre: ${offres}" >
-						            <td class="text-center" th:text="${offre.titreOffre}">titre</td>
-						            
-						            <td class="text-center" th:text="${offre.DateDebut}">date debut</td>
-						            <td class="text-center" th:text="${offre.DateFin}">2013</td>
-						            <td class="text-center"> <button type="button" rel="tooltip" class="btn btn-info" th:text="${offre.etat}">etat</button></td>
-						            <td class="td-actions text-center">
-						               <a th:href="@{/detailOffre(id=${offre.idoffre})}"> <button type="button" rel="tooltip" class="btn btn-success">
-						                   <i class="material-icons">info</i>
-						                </button></a>
-						            </td>
-						        </tr>
-						
-						    </tbody>
-						</table>
-                      
-                
-                </div>
-              </div>
             </div>
-            
-          </div>
-          
-  <!-- Modal -->
-<div class="modal fade" id="AddOffre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter Appel D'offre</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-       
-      <div class="modal-body">
-              
-            <form method="post" th:action="@{/AjouterOffre}" th:object="${Offre}" >
-            
-					<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">Titre</label>
-					  <div class="col-md-7">
-					    <input
-					      type="text"
-					      placeholder="titre de l'offre"
-					      class="form-control input-md"
-					      th:field="*{titreOffre}"
-					    />
-					  </div>
-					</div>
-					
-					<!-- Text input-->
-					<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">Date debut</label>
-					  <div class="col-md-7">
-					    <input
-					    th:field="*{DateDebut}"
-					      id="date debut"
-					      name="dateDebut"
-					      type="date"
-					      placeholder="placeholder"
-					      class="form-control input-md"
-					    />
-					  </div>
-					</div>
-					
-					<!-- Text input-->
-					<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">Date fin</label>
-					  <div class="col-md-7">
-					    <input
-					    th:field="*{DateFin}"
-					      id="dateFin"
-					      name="dateFin"
-					      type="date"
-					      placeholder="placeholder"
-					      class="form-control input-md"
-					    />
-					  </div>
-					</div>
-					            
-		            <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="submit" class="btn btn-primary">Envoyer</button>
-		      		</div>
-             </form>
-							              
-      </div>  
-      
-      
-    </div>
-  </div>
-</div>
-
-  
         </div>
-    
-  
-</body>
 
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="AddOffre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter Appel D'offre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form method="post" th:action="@{/AjouterOffre}" th:object="${Offre}">
+
+                        <div class="form-group">
+                            <label class="col-md-7 control-label" for="textinput">Titre</label>
+                            <div class="col-md-7">
+                                <input
+                                        type="text"
+                                        placeholder="titre de l'offre"
+                                        class="form-control input-md"
+                                        th:field="*{titreOffre}"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-7 control-label" for="textinput">Date debut</label>
+                            <div class="col-md-7">
+                                <input
+                                        th:field="*{DateDebut}"
+                                        id="date debut"
+                                        name="dateDebut"
+                                        type="date"
+                                        placeholder="placeholder"
+                                        class="form-control input-md"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-7 control-label" for="textinput">Date fin</label>
+                            <div class="col-md-7">
+                                <input
+                                        th:field="*{DateFin}"
+                                        id="dateFin"
+                                        name="dateFin"
+                                        type="date"
+                                        placeholder="placeholder"
+                                        class="form-control input-md"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

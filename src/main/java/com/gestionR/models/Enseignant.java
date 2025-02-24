@@ -5,12 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Enseignant")
 public class Enseignant extends Personnel {
-
-	
 	private String Lab;
 
-	
-	
 	public Enseignant() {
 		super();
 	}
@@ -29,8 +25,6 @@ public class Enseignant extends Personnel {
 		Lab = lab;
 	}
 
-
-
 	public String getLab() {
 		return Lab;
 	}
@@ -38,8 +32,4 @@ public class Enseignant extends Personnel {
 	public void setLab(String lab) {
 		Lab = lab;
 	}
-
-
-	
-	
 }

@@ -1,263 +1,265 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
 
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-        <div class="container">
-          <div class="row">
+
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
+        <div class="row">
             <div class="col-md-8">
-              <div class="card" style="width: 900px;">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Detail Offre</h4>
-                  <p class="card-category">Detail</p>
+                <div class="card" style="width: 900px;">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Detail Offre</h4>
+                        <p class="card-category">Detail</p>
+                    </div>
+
+                    <div>
+                        <div class="card" style="width: 50rem;">
+                            <div class="card-body">
+                                <h3 class="card-title" style="margin-bottom :20px;font-weight: bold;color:#9c27b0;">
+                                    Detail de l'offre</h3>
+                                <p class="card-text">titre de l'offre : <span th:text="${offre.titreOffre}"></span></p>
+                                <p class="card-text">Date de dï¿½but : <span th:text="${offre.DateDebut}"></span></p>
+                                <p class="card-text">Date de Fin : <span th:text="${offre.DateFin}"></span></p>
+                                <p class="card-text">Ressources demandï¿½es : <span></span></p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#soumission"> Soumettre
+                                </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal"> Modifier
+                                </button>
+                                <!--  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"> Supprimer</button>-->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Fournisseur</th>
+
+                                <th class="text-center">Societe</th>
+                                <th class="text-center">Budget Proposï¿½e</th>
+                                <th class="text-center">Date prevue de livraison</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody th:if="${offre.isTerminated==false}">
+                            <tr th:each="soumiss: ${soumissions}">
+
+
+                                <td class="text-center" th:text="${soumiss.nomFournisseur}"></td>
+
+                                <td class="text-center" th:text="${soumiss.nomSociete}"></td>
+                                <td class="text-center" th:text="${soumiss.budget_proposee}"></td>
+                                <td class="text-center" th:text="${soumiss.date_prevue_livraison}"></td>
+                                <td class="td-actions text-center">
+                                    <form th:action="@{/accepterOffreFournisseur}" method="get"
+                                          th:if="${soumiss.isblocked == false}">
+                                        <input type="hidden" name="id-soumission" th:value="${soumiss.id}">
+                                        <input type="hidden" name="id-offre" th:value="${offre.idoffre}">
+
+                                        <input type="submit" value="Accepter" style="font-color : green;"/>
+                                    </form>
+                                    <div th:if="${soumiss.isblocked == true}">
+                                        <span style="font-color:red;"> Enlever de la blacklist pour l'accepter </span>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+                            <tbody th:if="${offre.isTerminated==true}">
+                            <tr th:each="soumiss: ${soumissions}">
+
+
+                                <td class="text-center" th:text="${soumiss.nomFournisseur}"></td>
+
+                                <td class="text-center" th:text="${soumiss.nomSociete}"></td>
+                                <td class="text-center" th:text="${soumiss.budget_proposee}"></td>
+                                <td class="text-center" th:text="${soumiss.date_prevue_livraison}"></td>
+                                <td class="td-actions text-center">
+
+                                    <div>
+                                        <span style="font-color:green;">ce fournisseur est accepte</span>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
                 </div>
-                
-                <div>
-                	<div class="card" style="width: 50rem;">
-					  <div class="card-body">
-					    <h3 class="card-title" style="margin-bottom :20px;font-weight: bold;color:#9c27b0;">Detail de l'offre</h3>
-					    <p class="card-text">titre de l'offre : <span th:text="${offre.titreOffre}"></span></p>
-					    <p class="card-text">Date de début : <span th:text="${offre.DateDebut}"></span></p>
-					    <p class="card-text">Date de Fin : <span th:text="${offre.DateFin}"></span></p>
-					    <p class="card-text">Ressources demandées : <span ></span></p>
-					    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#soumission"> Soumettre </button>
-					    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Modifier </button>
-					   <!--  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"> Supprimer</button>-->
-					 
-					  </div>
-					</div>
-                </div>
-                <div>
-                 <table class="table">
-						    <thead>
-						        <tr>
-						            <th class="text-center">Fournisseur</th>
-						            
-						            <th class="text-center">Societe</th>
-						            <th class="text-center">Budget Proposée</th>
-						            <th class="text-center">Date prevue de livraison</th>
-						            <th class="text-center">Actions</th>
-						        </tr>
-						    </thead>
-						    <tbody th:if="${offre.isTerminated==false}">
-						        <tr th:each="soumiss: ${soumissions}"  >
-						        
-						         
-						            <td class="text-center" th:text="${soumiss.nomFournisseur}"></td>
-						            
-						            <td class="text-center" th:text="${soumiss.nomSociete}"></td>
-						            <td class="text-center" th:text="${soumiss.budget_proposee}"></td>
-						             <td class="text-center" th:text="${soumiss.date_prevue_livraison}"></td>
-						             <td class="td-actions text-center">
-						               <form th:action="@{/accepterOffreFournisseur}" method="get" th:if="${soumiss.isblocked == false}">
-						            	<input type="hidden" name="id-soumission" th:value="${soumiss.id}">
-						            	<input type="hidden" name="id-offre" th:value="${offre.idoffre}">
-						            	
-						                <input type="submit" value="Accepter" style="font-color : green;" />
-						                </form>
-						                <div  th:if="${soumiss.isblocked == true}">
-						                   <span style="font-color:red;"> Enlever de la blacklist pour l'accepter </span>
-						                </div>
-						               
-						            </td>
-						           
-						        </tr>
-						
-						    </tbody>
-						    <tbody th:if="${offre.isTerminated==true}">
-						     <tr th:each="soumiss: ${soumissions}"  >
-						        
-						         
-						            <td class="text-center" th:text="${soumiss.nomFournisseur}"></td>
-						            
-						            <td class="text-center" th:text="${soumiss.nomSociete}"></td>
-						            <td class="text-center" th:text="${soumiss.budget_proposee}"></td>
-						             <td class="text-center" th:text="${soumiss.date_prevue_livraison}"></td>
-						             <td class="td-actions text-center">
-						               
-						                <div>
-						                   <span style="font-color:green;">ce fournisseur est accepte</span>
-						                </div>
-						               
-						            </td>
-						           
-						        </tr>
-						    </tbody>
-						</table>
-						
-						</div>
-                      
-                
-                </div>
-              </div>
             </div>
-            
-              
-  <!-- Modal modifier-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <div class="modal-body">
-        
-                 
-                              
-            
-                 
-                   <form method="post" th:action="@{/modifierOffre}" th:object="${offre}" >
-            		
-            		<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">Titre</label>
-					  <div class="col-md-7">
-					    <input
-					      type="text"
-					      placeholder="titre de l'offre"
-					      class="form-control input-md"
-					      name="IDD"
-					      th:value="${offre.idoffre}"
-					    />
-					  </div>
-					  </div>
-					  
-					<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">Titre</label>
-					  <div class="col-md-7">
-					    <input
-					      type="text"
-					      placeholder="titre de l'offre"
-					      class="form-control input-md"
-					      th:field="*{titreOffre}"
-					      value="${offre.titreOffre}"
-					    />
-					  </div>
-					</div>
-					
-					<!-- Text input-->
-					<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">Date debut</label>
-					  <div class="col-md-7">
-					    <input
-					    th:field="*{DateDebut}"
-					    value="${offre.DateDebut}"
-					      id="date debut"
-					      name="dateDebut"
-					      type="date"
-					      placeholder="placeholder"
-					      class="form-control input-md"
-					    />
-					  </div>
-					</div>
-					
-					<!-- Text input-->
-					<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">Date fin</label>
-					  <div class="col-md-7">
-					    <input
-					    value="${offre.DateFin}"
-					    th:field="*{DateFin}"
-					      id="dateFin"
-					      name="dateFin"
-					      type="date"
-					      placeholder="placeholder"
-					      class="form-control input-md"
-					    />
-					  </div>
-					</div>
-					  <input type="text" th:field="*{idoffre}" value="${offre.idoffre}"/>
-                	
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-     
-        <button type="submit" class="btn btn-primary">Envoyer</button>
-      </div>
-      </form>
-      
-    </div>
-  </div>
-</div>
-</div>
-
-  <!-- Modal soumission-->
-<div class="modal fade" id="soumission" tabindex="-1" role="dialog" aria-labelledby="soumission" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="soumission">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <div class="modal-body">
-        
-                 
-                               <form method="post" th:action="@{/addSoumission}"th:object="${soumission}">
-            
-					<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">Budget Proposée</label>
-					  <div class="col-md-7">
-					    <input
-					    	
-					    	th:field="*{budget_proposee}"
-					      type="text"
-					      placeholder="titre de l'offre"
-					      class="form-control input-md"
-					  
-					    />
-					  </div>
-					</div>
-					
-					<!-- Text input-->
-					<div class="form-group">
-					  <label class="col-md-7 control-label" for="textinput">date prevue livraison</label>
-					  <div class="col-md-7">
-					    <input
-					  		th:field="*{date_prevue_livraison}"
-					      id="date debut"
-					      name="dateDebut"
-					      type="date"
-					      placeholder="placeholder"
-					      class="form-control input-md"
-					    />
-					  </div>
-					</div>
-				 <input type="hidden" th:value="${offre.idoffre}" name="idoffresoumission"/>
-					
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-     
-        <button type="submit" class="btn btn-primary">Envoyer</button>
-      </div>
-      </form>
-      
-    </div>
-  </div>
-</div>
-</div>
-  
-            
-          </div>
         </div>
-     
 
-  
+
+        <!-- Modal modifier-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <form method="post" th:action="@{/modifierOffre}" th:object="${offre}">
+
+                            <div class="form-group">
+                                <label class="col-md-7 control-label" for="textinput">Titre</label>
+                                <div class="col-md-7">
+                                    <input
+                                            type="text"
+                                            placeholder="titre de l'offre"
+                                            class="form-control input-md"
+                                            name="IDD"
+                                            th:value="${offre.idoffre}"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-7 control-label" for="textinput">Titre</label>
+                                <div class="col-md-7">
+                                    <input
+                                            type="text"
+                                            placeholder="titre de l'offre"
+                                            class="form-control input-md"
+                                            th:field="*{titreOffre}"
+                                            value="${offre.titreOffre}"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-7 control-label" for="textinput">Date debut</label>
+                                <div class="col-md-7">
+                                    <input
+                                            th:field="*{DateDebut}"
+                                            value="${offre.DateDebut}"
+                                            id="date debut"
+                                            name="dateDebut"
+                                            type="date"
+                                            placeholder="placeholder"
+                                            class="form-control input-md"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-7 control-label" for="textinput">Date fin</label>
+                                <div class="col-md-7">
+                                    <input
+                                            value="${offre.DateFin}"
+                                            th:field="*{DateFin}"
+                                            id="dateFin"
+                                            name="dateFin"
+                                            type="date"
+                                            placeholder="placeholder"
+                                            class="form-control input-md"
+                                    />
+                                </div>
+                            </div>
+                            <input type="text" th:field="*{idoffre}" value="${offre.idoffre}"/>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                <button type="submit" class="btn btn-primary">Envoyer</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal soumission-->
+        <div class="modal fade" id="soumission" tabindex="-1" role="dialog" aria-labelledby="soumission"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="soumission">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <form method="post" th:action="@{/addSoumission}" th:object="${soumission}">
+
+                            <div class="form-group">
+                                <label class="col-md-7 control-label" for="textinput">Budget Proposï¿½e</label>
+                                <div class="col-md-7">
+                                    <input
+
+                                            th:field="*{budget_proposee}"
+                                            type="text"
+                                            placeholder="titre de l'offre"
+                                            class="form-control input-md"
+
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-7 control-label" for="textinput">date prevue livraison</label>
+                                <div class="col-md-7">
+                                    <input
+                                            th:field="*{date_prevue_livraison}"
+                                            id="date debut"
+                                            name="dateDebut"
+                                            type="date"
+                                            placeholder="placeholder"
+                                            class="form-control input-md"
+                                    />
+                                </div>
+                            </div>
+                            <input type="hidden" th:value="${offre.idoffre}" name="idoffresoumission"/>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                <button type="submit" class="btn btn-primary">Envoyer</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
 </body>
 
 </html>

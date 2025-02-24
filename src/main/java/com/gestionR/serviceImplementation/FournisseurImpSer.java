@@ -17,11 +17,9 @@ public class FournisseurImpSer implements FournisseurService {
 	public List<String> getFounisseurUsername() {
 		List<Fournisseur> fournisseur = fournisseurRep.findAll();
 		List<String> userName = new ArrayList<String>();
-		
 		for(int i=0;i<fournisseur.size();i++) {
 			userName.add(fournisseur.get(i).getUsername());
 		}
-		
 		return userName;
 	}
 

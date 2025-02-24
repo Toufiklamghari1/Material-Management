@@ -1,97 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
 
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-        <div class="container">
-          <div class="row">
+
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
+        <div class="row">
             <div class="col-md-11">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">List des Besoins</h4>
-                </div>
-                <div class="card-body">
-                  <div class="tab-content tab-space">
-                    <div class="tab-pane active" id="link1" aria-expanded="true">
-                      <div>
-                        <!-- materiel table -->
-                        <table class="table besoin-table">
-                          <thead>
-                          <tr>
-                            <th class="text-center">#</th>
-                            <th class="text-center">Enseignant</th>
-                            <th class="text-center">Besoin</th>
-                            <th class="text-center">discription</th>
-                            <th class="text-center">Confirmer</th>
-                          </tr>
-                          </thead>
-                          <tbody >
-                          <th:block th:each="besoin : ${besoins}" th:with="number = ${counter.increment()}">
-                            <tr th:with="number = ${counter.get()}">
-                              <td class="text-center" th:text="${number}"></td>
-                              <td class="text-center" th:text="${besoin.value}"> </td><!---->
-                              <td class="w-25 text-center" th:text="${besoin.key.type}"></td><!-- -->
-                              <td class="text-center" th:text="${besoin.key.discription}"></td><!---->
-                              <td class="text-center" >
-                                <input
-                                        class="form-check-input custom-checkbox"
-                                        type="checkbox"
-                                        value=""
-                                        aria-label="..."
-                                />
-                              </td>
-                            </tr>
-                          </th:block>
-                          </tbody>
-                        </table>
-                      </div>
-                      <button id="confirmer-btn" class="btn btn-primary ml-auto mr-0 d-block" data-toggle="modal" data-target="#confirmerModal">Confirmer</button>
-
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">List des Besoins</h4>
                     </div>
+                    <div class="card-body">
+                        <div class="tab-content tab-space">
+                            <div class="tab-pane active" id="link1" aria-expanded="true">
+                                <div>
+                                    <!-- materiel table -->
+                                    <table class="table besoin-table">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">Enseignant</th>
+                                            <th class="text-center">Besoin</th>
+                                            <th class="text-center">discription</th>
+                                            <th class="text-center">Confirmer</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="besoin : ${besoins}"
+                                                  th:with="number = ${counter.increment()}">
+                                            <tr th:with="number = ${counter.get()}">
+                                                <td class="text-center" th:text="${number}"></td>
+                                                <td class="text-center" th:text="${besoin.value}"></td><!---->
+                                                <td class="w-25 text-center" th:text="${besoin.key.type}"></td><!-- -->
+                                                <td class="text-center" th:text="${besoin.key.discription}"></td><!---->
+                                                <td class="text-center">
+                                                    <input
+                                                            class="form-check-input custom-checkbox"
+                                                            type="checkbox"
+                                                            value=""
+                                                            aria-label="..."
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button id="confirmer-btn" class="btn btn-primary ml-auto mr-0 d-block"
+                                        data-toggle="modal" data-target="#confirmerModal">Confirmer
+                                </button>
 
-                  <!-- Modal -->
-                  <div class="modal fade" id="confirmerModal" tabindex="-1" role="dialog" aria-labelledby="confirmerModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="confirmerModalLabel">Conrirmer les Besoins</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body text-center">
-                          <form method="POST" action="#" class="text-black">
-                            <div class="form-check form-check-radio">
-                              <h3>avec votre click sur confirmer vous confirmer la list des besoin finale et leurs enseignant, tous les autre besoin seront supprimer.
-                              <br>Vous Accepter ?</h3>
                             </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                              <button type="button" class="btn btn-primary confirme-btn" data-dismiss="modal">Confirmer</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirmerModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="confirmerModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmerModalLabel">Conrirmer les Besoins</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <form method="POST" action="#" class="text-black">
+                                                <div class="form-check form-check-radio">
+                                                    <h3>avec votre click sur confirmer vous confirmer la list des besoin
+                                                        finale et leurs enseignant, tous les autre besoin seront
+                                                        supprimer.
+                                                        <br>Vous Accepter ?</h3>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Fermer
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary confirme-btn"
+                                                            data-dismiss="modal">Confirmer
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-  
-  
+    </div>
+</div>
+
+
 </body>
 
 </html>

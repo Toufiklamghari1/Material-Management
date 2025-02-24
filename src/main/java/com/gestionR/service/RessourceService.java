@@ -6,6 +6,5 @@ import com.gestionR.models.Ressource;
 
 public interface RessourceService {
 	List<Ressource> getRessourse();
-
 	Ressource findByIdR(String id, List<Ressource> list);
 }

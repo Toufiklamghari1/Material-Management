@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 @Document(collection = "Ordinateur")
 public class Ordinateure extends Ressource {
-
     private String cpu;
     private int ram;
     private int rom;

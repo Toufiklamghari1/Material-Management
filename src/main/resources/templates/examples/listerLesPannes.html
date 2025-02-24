@@ -1,67 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
 
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-       <div class="container">
-          <div class="row">
+
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
+        <div class="row">
             <div class="col-md-8">
-              <div class="card" style="width: 900px;">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Liste des Pannes</h4>
-                  <p class="card-category">Liste des Pannes</p>
+                <div class="card" style="width: 900px;">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Liste des Pannes</h4>
+                        <p class="card-category">Liste des Pannes</p>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center">description</th>
+                            <th class="text-center">ordre logiciel</th>
+                            <th class="text-center">frequence</th>
+                            <th class="text-center">Date Apparaition</th>
+                            <th class="text-center">Detail</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <script> var i = 1; </script>
+                        <div th:each="panne : ${Pannes}">
+                            <tr>
+                                <td class="text-center">
+                                    <script> document.write(i) </script>
+                                </td>
+                                <td class="text-center" th:text="${panne.explication}"></td>
+                                <td class="text-center" th:text="${panne.ordreLogiciel}"></td>
+                                <td class="text-center" th:text="${panne.frequence}"></td>
+                                <td class="text-center" th:text="${panne.dateApparition}"></td>
+                                <td class="text-center">
+                                    <a th:href="@{/detailPanne(id=${panne.idPanne})}" rel="tooltip"
+                                       class="btn btn-info">
+                                        <i class="fa fa-info"></i>
+                                    </a></td>
+                            </tr>
+                            <script> i = i + 1; </script>
+                        </div>
+                        </tbody>
+                    </table>
+
+
                 </div>
-                <table class="table">
-    <thead>
-        <tr>
-            <th class="text-center">#</th>
-            <th class="text-center">description</th>
-            <th class="text-center">ordre logiciel</th>
-            <th class="text-center">frequence</th>
-            <th class="text-center">Date Apparaition</th>
-            <th class="text-center">Detail</th>
-        </tr>
-    </thead>
-    <tbody>
-    
-    			<script> var i=1; </script>
-			    <div th:each="panne : ${Pannes}">
-			        <tr>
-			            <td class="text-center"><script> document.write(i) </script></td>
-			            <td class="text-center" th:text="${panne.explication}"></td>
-			            <td class="text-center" th:text="${panne.ordreLogiciel}"></td>
-			            <td class="text-center" th:text="${panne.frequence}"></td>
-			            <td class="text-center" th:text="${panne.dateApparition}"> </td>
-			             <td class="text-center" >
-			            <a  th:href="@{/detailPanne(id=${panne.idPanne})}"  rel="tooltip" class="btn btn-info" >
-			                    <i class="fa fa-info"></i>
-			            </a></td>
-			        </tr>
-			        <script> i=i+1; </script>
-			      </div>
-			    </tbody>
-			</table>
-                
-                
-                      
-                
-                </div>
-              </div>
             </div>
-            
-          </div>
         </div>
-    
-   
+
+    </div>
+</div>
+
+
 </body>
 
 </html>

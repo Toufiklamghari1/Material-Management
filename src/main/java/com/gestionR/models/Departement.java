@@ -13,13 +13,11 @@ public class Departement {
 
 	}
 
-	
 	public Departement(String nom, String chefDepartement) {
 		super();
 		this.nom = nom;
 		this.chefDepartement = chefDepartement;
 	}
-
 
 	public String getId() {
 		return id;
@@ -44,6 +42,4 @@ public class Departement {
 	public void setChefDepartement(String chefDepartement) {
 		this.chefDepartement = chefDepartement;
 	}
-
-	
 }

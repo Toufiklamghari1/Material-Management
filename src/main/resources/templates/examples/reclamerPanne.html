@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				 layout:decorate="~{examples/template}"
-				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				 >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{examples/template}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 
 <body>
 
-  
- 
- 
- <!--contenu a remplir -->
- <div class="content" layout:fragment="content">
-        <div class="container">
-          <div class="row">
+
+<!--contenu a remplir -->
+<div class="content" layout:fragment="content">
+    <div class="container">
+        <div class="row">
             <div class="col-md-8">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Reclamer une panne</h4>
-                  <p class="card-category">veuillez remplir le formulaire</p>
-                </div>
-                <div class="card-body">
-                  <form method="post" th:action="@{/addPanne}" th:object="${panne}" >
-                    <div class="row">
-                      <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Explication</label>
-                          <textarea  class="form-control" th:field="*{explication}"></textarea>
-                        </div>
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Date Apparition</label>
-                          <input type="date" class="form-control" th:field="*{dateApparition}">
-                        </div>
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="col-md-4">
-                        	<div class="form-group">
-                          		<label class="bmd-label-floating">Frequence</label>
-							    <select id="frequencePanne" name="frequencePanne" class="form-control" th:field="*{frequence}">
-							    
-							      <option value="RARE">rare</option>
-							      <option value="FREQUENTE">frequente</option>
-							      <option value="PERMANANTE">permanente</option>
-							    </select>
-							</div>
-                        </div>
-                      <div class="clearfix"></div>
-                      <div class="col-md-7">
-                        	<div class="form-group">
-                          		<label class="bmd-label-floating">Ordre Logiciel</label>
-							    <select id="ordrelogiciel" name="ordrelogiciel" class="form-control" th:field="*{ordreLogiciel}">
-							    
-							      <option value="LOGICIEL">Logiciel</option>
-							      <option value="MATERIEL">Matériel</option>
-							      <option value="SYSTEME">Systeme</option>
-							    </select>
-							</div>
-                        </div>
-                    
-
-                    <button type="submit" class="btn btn-primary pull-right">Envoyer</button>
-                    <div class="clearfix"></div>
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Reclamer une panne</h4>
+                        <p class="card-category">veuillez remplir le formulaire</p>
                     </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      
-      </body>
+                    <div class="card-body">
+                        <form method="post" th:action="@{/addPanne}" th:object="${panne}">
+                            <div class="row">
+                                <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Explication</label>
+                                        <textarea class="form-control" th:field="*{explication}"></textarea>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Date Apparition</label>
+                                        <input type="date" class="form-control" th:field="*{dateApparition}">
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Frequence</label>
+                                        <select id="frequencePanne" name="frequencePanne" class="form-control"
+                                                th:field="*{frequence}">
 
-  </html>
+                                            <option value="RARE">rare</option>
+                                            <option value="FREQUENTE">frequente</option>
+                                            <option value="PERMANANTE">permanente</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Ordre Logiciel</label>
+                                        <select id="ordrelogiciel" name="ordrelogiciel" class="form-control"
+                                                th:field="*{ordreLogiciel}">
+
+                                            <option value="LOGICIEL">Logiciel</option>
+                                            <option value="MATERIEL">Matï¿½riel</option>
+                                            <option value="SYSTEME">Systeme</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary pull-right">Envoyer</button>
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

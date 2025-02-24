@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="constat")
 public class constat {
-
 	@Id
 	private String idconstat;
 	private String ordrePanne;
@@ -15,7 +14,7 @@ public class constat {
 	public constat(){
 
 	}
-	
+
 	public String getIdconstat() {
 		return idconstat;
 	}
@@ -28,7 +27,6 @@ public class constat {
 		return code_ressource;
 	}
 
-	
 	public String getOrdrePanne() {
 		return ordrePanne;
 	}
@@ -56,6 +54,4 @@ public class constat {
 	public void setIdTech(String idTech) {
 		this.idTech = idTech;
 	}
-
-
 }

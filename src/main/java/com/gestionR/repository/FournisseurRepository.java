@@ -9,8 +9,6 @@ import com.gestionR.models.Fournisseur;
 
 @Repository
 public interface FournisseurRepository extends MongoRepository<Fournisseur, String>{
-
-	public Fournisseur findByEmail(String email);
-	public Fournisseur  findByIdFourniseur(String idFourniseur);
-	
+	 Fournisseur findByEmail(String email);
+	 Fournisseur  findByIdFourniseur(String idFourniseur);
 }

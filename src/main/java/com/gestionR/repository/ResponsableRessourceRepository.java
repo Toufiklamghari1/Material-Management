@@ -8,7 +8,5 @@ import com.gestionR.models.ResponsableRessource;
 
 @Repository
 public interface ResponsableRessourceRepository extends MongoRepository<ResponsableRessource, String> {
-
-	
 	public ResponsableRessource findByEmail(String email);
 }

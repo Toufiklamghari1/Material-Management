@@ -8,7 +8,6 @@ import java.util.List;
 
 @Document(collection = "Demandes")
 public class Demande {
-
     @Id
     private String id;
     private String num;
@@ -56,6 +55,7 @@ public class Demande {
     public void setState(DemandeState state) {
         this.state = state;
     }
+
     public String getId() {
         return id;
     }

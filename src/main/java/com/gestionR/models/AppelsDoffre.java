@@ -10,28 +10,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection="AppelsDoffre")
 public class AppelsDoffre {
-	
 	@Id
 	private String idoffre;
-	
+
 	private String titreOffre;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date DateDebut;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date DateFin;
-	
-	
+
 	private List<Besoin> Besoins= null;
 
 	private String etat;
-	
+
 	private boolean isTerminated;
-	
+
 	private List<Soumission> soumissions ;
-	
-	
+
 	public List<Soumission> getSoumissions() {
 		return soumissions;
 	}
@@ -71,7 +68,7 @@ public class AppelsDoffre {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	public AppelsDoffre() {
 		super();
@@ -82,7 +79,7 @@ public class AppelsDoffre {
 	 * @param dateFin
 	 * @param besoins
 	 */
-	
+
 	public String getIdoffre() {
 		return idoffre;
 	}
@@ -123,9 +120,4 @@ public class AppelsDoffre {
 		this.isTerminated = isTerminated;
 		this.etat="terminé";
 	}
-	
-	
-	
-	
-	
 }
