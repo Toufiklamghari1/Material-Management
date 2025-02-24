@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{examples/template}"
+				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				 >
+
+<body>
+
+  
+ 
+ 
+ <!--contenu a remplir -->
+ <div class="content" layout:fragment="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card" style="width: 900px;">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Liste des Pannes</h4>
+                  <p class="card-category">Liste des Pannes</p>
+                </div>
+                <table class="table">
+				    <thead>
+				        <tr>
+				            <th class="text-center">#</th>
+				            <th>description</th>
+				            <th>code_ressource</th>
+				            <th>Technicien</th>
+				            <th class="text-cente">Detail</th>
+				        </tr>
+				    </thead>
+			 <tbody>
+    
+    			<script> var i=1; </script>
+			    <div th:each="constat_item : ${constats}">
+			        <tr>
+			            <td class="text-center"><script> document.write(i) </script></td>
+			            <td  th:text="${constat_item.description}"></td>
+			            <td th:text="${constat_item.code_ressource}"></td>
+			            <td th:text="${constat_item.idTech}"></td>
+			             <td class="text-center" >
+			            <a  th:href="@{/detailConstat(id=${constat_item.idconstat})}"  rel="tooltip" class="btn btn-info" >
+			                    <i class="fa fa-info"></i>
+			            </a></td>
+			        </tr>
+			        <script> i=i+1; </script>
+			      </div>
+			    </tbody>
+			  </table>
+                
+                
+                      
+                
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+     
+</body>
+
+</html>

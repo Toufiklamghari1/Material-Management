@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{examples/template}"
+				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				 >
+
+<body>
+
+  
+ 
+ 
+ <!--contenu a remplir -->
+ <div class="content" layout:fragment="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-11">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">List des Demande Envoyer</h4>
+              </div>
+              <div class="card-body">
+                <div class="tab-content tab-space">
+                  <div class="tab-pane active" id="link1" aria-expanded="true">
+                    <div>
+                      <!-- materiel table -->
+                      <table class="table besoin-table">
+                        <thead>
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th class="text-center">Demande</th>
+                          <th class="text-center">Date d'envoie</th>
+                          <th class="text-center">Etat</th>
+                          <th class="text-center">Details</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <th:block th:each="demande : ${demandes}" th:with="number = ${counter.increment()}">
+                          <tr th:with="number = ${counter.get()}">
+                            <td class="text-center" th:text="${number}"></td>
+                            <td class="text-center" th:text="${demande.num}"></td>
+                            <td class="text-center" th:text="${demande.date}"></td>
+                            <td class="text-center bg-orange" th:if="${demande.state}+'' == 'STATE_SOUMESSION' " th:text="${demande.state}"></td>
+                            <td class="text-center bg-green" th:if="${demande.state}+'' == 'STATE_AFFECTATION' " th:text="${demande.state}"></td>
+                            <td class="text-center bg-red" th:if="${demande.state}+'' == 'STATE_OFFRE' " th:text="${demande.state}"></td>
+                            <td class="text-center" >
+                              <a th:href="@{/demandeDetails(num=${demande.num})}" id="details-btn" class="btn btn-primary m-auto">Details</a>
+                            </td>
+                          </tr>
+                        </th:block>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+</body>
+
+</html>

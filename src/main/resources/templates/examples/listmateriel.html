@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{examples/template}"
+				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				 >
+
+<body>
+
+  
+ 
+ 
+ <!--contenu a remplir -->
+ <div class="content" layout:fragment="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-11">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <ul class="nav nav-pills nav-pills-primary h4" role="tablist">
+                    <li class="nav-item w-50 ">
+                      <a class="nav-link active text-white text-center" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true">
+                        Liste de Materiel
+                      </a>
+                    </li>
+                    <li class="nav-item w-50">
+                      <a class="nav-link text-white text-center" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false">
+                        Liste des Besoin Envoyer
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content tab-space">
+                    <div class="tab-pane active" id="link1" aria-expanded="true">
+                      <div>
+                        <!-- materiel table -->
+                        <table class="table">
+                          <thead>
+                          <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Nom de besoin</th>
+                            <th class="text-center">discription</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <th:block th:each="besoin : ${besoins}" th:with="number = ${counter.increment()}">
+                            <tr th:with="number = ${counter.get()}">
+                              <td class="text-center" th:text="${number}"></td>
+                              <td class="w-25 text-center"  th:text="${besoin.type}"></td>
+                              <td class="text-center" th:text="${besoin.discription}"></td>
+                            </tr>
+                          </th:block>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="link2" aria-expanded="false">
+                        <div>
+                          <!-- besoin table -->
+                          <table class="table">
+                            <thead>
+                            <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-center">Nom de besoin</th>
+                              <th class="text-center">discription</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="besoin : ${besoins}" th:with="number = ${counter.increment()}">
+                              <tr th:with="number = ${counter.get()}">
+                                <td class="text-center" th:text="${number}"></td>
+                                <td class="w-25 text-center"  th:text="${besoin.type}"></td>
+                                <td class="text-center" th:text="${besoin.discription}"></td>
+                              </tr>
+                            </th:block>
+                            </tbody>
+                          </table>
+                        </div>
+                        <button type="button" class="btn btn-primary ml-auto mr-0 d-block" data-toggle="modal" data-target="#exampleModal">Envoyer un Besoin</button>
+
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+            
+          </div>
+                           <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Envoyer un Besoin</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body text-center">
+                          <form method="POST" action="/listmateriel" class="text-black">
+                            <div class="form-check form-check-radio">
+                              <h3>type de materiel</h3>
+                              <label class="form-check-label">
+                                  <input type="radio" id="imprimente" class="form-check-input" name="ressource" value="imprimente">
+                                  <label for="imprimente">imprimente</label>
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                              </label>
+                              <label class="form-check-label">
+                                <input type="radio" id="Ordinateure" class="form-check-input" name="ressource" value="Ordinateure">
+                                <label for="Ordinateure">Ordinateure</label>
+                                <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                              </label>
+                              <br>
+                              <h3>Discription</h3>
+                              <textarea name="discription" id="discription" cols="30" rows="3"></textarea></div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                          <input type="submit"  class="btn btn-primary" value="Envoyer">
+                        </div>
+                        </form>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+      </div>
+
+    
+</body>
+
+</html>

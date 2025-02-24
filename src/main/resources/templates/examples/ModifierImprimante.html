@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{examples/template}"
+				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				 >
+
+<body>
+ <!--contenu a remplir -->
+ <div class="content" layout:fragment="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Reclamer une panne</h4>
+                  <p class="card-category">veuillez remplir le formulaire</p>
+                </div>
+                <div class="card-body">
+                
+                
+                
+            
+            
+           
+			                  
+                  
+                  			
+                  			
+                   			<div>
+                   					<form method="post" th:action="@{/PageModifierImprimante}" th:object="${imprimante}">
+			                    <div class="row">
+			                      <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
+			                        <div class="form-group">
+			                          <input type="hidden" th:value="${imprimante.Id}" class="form-control" name="idImp">
+			                        </div>
+			                      </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Date de livrison</label>
+			                          <input type="date" value="${imprimante.dateliv}" class="form-control" th:field="*{dateliv}">
+			                        </div>
+			                      </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-4">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">garantie en nombre de mois</label>
+										    <input type="number" value="${imprimante.garantie}" class="form-control" th:field="*{garantie}">
+										</div>
+			                        </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">marque</label>
+										    <input type="text" value="${imprimante.marque}" class="form-control" th:field="*{marque}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                       <div class="clearfix"></div>
+			                        <div class="col-md-7">
+			                        	<div class="form-group">
+				                        	<label for="exampleFormControlSelect1">Fournisseur</label>
+										    <select class="form-control" th:field="*{fournisseur}">
+										    		<div th:each="forniss : ${fournisseur}" >
+										    			<option th:if="${forniss} == ${imprimante.fournisseur}" th:text="${forniss}"  th:value="${forniss}" selected></option>
+										    			<option th:if="${forniss} != ${imprimante.fournisseur}" th:text="${forniss}"  th:value="${forniss}"></option>
+										    		</div>
+										      
+										    </select>
+									    </div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                        <div class="clearfix"></div>
+			                        <div class="clearfix"></div>
+			                        <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">La resolution </label>
+										    <input type="number" value="${imprimante.resolution}" class="form-control" th:field="*{resolution}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">La vetesse d'Impristion</label>
+										    <input type="number" value="${imprimante.vetesseImpristion}" class="form-control" th:field="*{vetesseImpristion}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                     
+			                    <button type="submit" class="btn btn-primary pull-right">Envoyer</button>
+			                    
+			                    </div>
+			                    <div class="clearfix"></div>
+			                  </form>
+                   			</div>
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+ 
+</body>
+
+</html>

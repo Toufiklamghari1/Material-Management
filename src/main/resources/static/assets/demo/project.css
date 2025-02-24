@@ -1,0 +1,18 @@
+.text-black *{
+    color: black;
+}
+.checked-row{
+    background-color: #28ff0173;
+}
+.bg-green{
+    background-color: #14ff7d !important;
+}
+.bg-red{
+    background-color: #ff5a5a !important;
+}
+.bg-orange{
+    background-color: #e3770b !important;
+}
+.w-33{
+    width: 33% ;
+}

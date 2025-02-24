@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{examples/template}"
+				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				 >
+
+<body>
+
+  
+ 
+ 
+ <!--contenu a remplir -->
+ <div class="content" layout:fragment="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-11">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <ul class="nav nav-pills nav-pills-primary h4" role="tablist">
+                  <li class="nav-item w-33 ">
+                    <a class="nav-link active text-white text-center" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true">
+                      Liste des Enseignants
+                    </a>
+                  </li>
+                  <li class="nav-item w-33">
+                    <a class="nav-link text-white text-center" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false">
+                      Liste des Ordinateure
+                    </a>
+                  </li>
+                  <li class="nav-item w-33">
+                    <a class="nav-link text-white text-center" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false">
+                      Liste des Imprimante
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content tab-space">
+                  <div class="tab-pane active" id="link1" aria-expanded="true">
+                    <div>
+                      <!-- materiel table -->
+                      <!--Enseignant table-->
+                      <table class="table">
+                        <thead>
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th class="text-center">Nom</th>
+                          <th class="text-center">Mail</th>
+                          <th class="text-center">Besoin</th>
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Choisir</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="personne : ${personnes}" th:with="number = ${counter.increment()}">
+                          <tr th:with="number = ${counter.get()}">
+                            <td class="text-center" th:text="${number}"></td>
+                            <td class="w-25 text-center"  th:text="${personne.value.username}"></td>
+                            <td class="w-25 text-center"  th:text="${personne.value.email}"></td>
+                            <td class="text-center" th:text="${personne.key.type}"></td>
+                            <td class="w-25 text-center"  th:text="${personne.key.discription}"></td>
+                            <td class="text-center display-block" >
+                              <input
+                                      class="form-check-input check-enseignant"
+                                      type="checkbox"
+                                      value=""
+                                      aria-label="..."
+                              />
+                            </td>
+                          </tr>
+                        </th:block>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="link2" aria-expanded="false">
+                    <div>
+                      <!-- Ordinateure  table -->
+                      <table class="table">
+                        <thead>
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th class="text-center">Fornisseure</th>
+                          <th class="text-center">Marque</th>
+                          <th class="text-center">CPU</th>
+                          <th class="text-center">RAM</th>
+                          <th class="text-center">ROM</th>
+                          <th class="text-center">ECRAN</th>
+                          <th class="text-center">Garantie</th>
+                          <th class="text-center">Choisir</th>
+                        </tr>
+                        </thead>
+                        <tbody th:with="number = ${counter.clear()}">
+                        <th:block th:each="ordinateure : ${ordinateures}" th:with="number = ${counter.increment()}">
+                          <tr th:with="number = ${counter.get()}">
+                            <td class="text-center" th:text="${number}"></td>
+                            <td class="w-25 text-center"  th:text="${ordinateure.fournisseur}"></td>
+                            <td class="w-25 text-center"  th:text="${ordinateure.marque}"></td>
+                            <td class="w-25 text-center"  th:text="${ordinateure.cpu}"></td>
+                            <td class="w-25 text-center"  th:text="${ordinateure.ram}"></td>
+                            <td class="w-25 text-center"  th:text="${ordinateure.rom}"></td>
+                            <td class="w-25 text-center"  th:text="${ordinateure.ecran}"></td>
+                            <td class="w-25 text-center"  th:text="${ordinateure.garantie}"></td>
+                            <td class="text-center display-block" >
+                              <input
+                                      class="form-check-input check-ordinateure"
+                                      type="checkbox"
+                                      value=""
+                                      aria-label="..."
+                              />
+                            </td>
+                          </tr>
+                        </th:block>
+                        </tbody>
+                      </table>
+                    </div>
+                    <button type="button" class="btn btn-primary ml-auto mr-0 d-block confirmer-ordinataure" data-toggle="modal" data-target="#exampleModal" disabled=""true>Envoyer un Besoin</button>
+
+                  </div>
+                  <div class="tab-pane" id="link3" aria-expanded="false">
+                    <div>
+                      <!-- besoin table -->
+                      <table class="table imprimante-table">
+                        <thead>
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th class="text-center">Fornisseure</th>
+                          <th class="text-center">Marque</th>
+                          <th class="text-center">Resolution</th>
+                          <th class="text-center">Vetesse d'impression</th>
+                          <th class="text-center">Garantie</th>
+                          <th class="text-center">Choisir</th>
+                        </tr>
+                        </thead>
+                        <tbody th:with="number = ${counter.clear()}">
+                        <th:block th:each="imprimante : ${imprimantes}" th:with="number = ${counter.increment()}">
+                          <tr th:with="number = ${counter.get()}">
+                            <td class="text-center" th:text="${number}"></td>
+                            <td class="text-center" th:text="${imprimante.fournisseur}"></td>
+                            <td class="w-25 text-center"  th:text="${imprimante.marque}"></td>
+                            <td class="text-center" th:text="${imprimante.resolution}"></td>
+                            <td class="text-center" th:text="${imprimante.vetesseImpristion}"></td>
+                            <td class="w-25 text-center"  th:text="${imprimante.garantie}"></td>
+                            <td class="text-center display-block" >
+                              <input
+                                      class="form-check-input check-imprimante"
+                                      type="checkbox"
+                                      value=""
+                                      aria-label="..."
+                              />
+                            </td>
+                          </tr>
+                        </th:block>
+                        </tbody>
+                      </table>
+                    </div>
+                    <button type="button" class="btn btn-primary ml-auto mr-0 d-block confirmer-imprimante" data-toggle="modal" data-target="#exampleModal" disabled="true">Envoyer un Besoin</button>
+
+                  </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmer L'affectation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body text-center">
+                        <form class="text-black">
+                          <div class="form-check form-check-radio">
+                            <h3>La ressource est-il paratger ?</h3>
+                            <label class="form-check-label">
+                              <input type="radio" id="non" class="form-check-input" name="confirmer" value="non" checked>
+                              <label for="non">Non</label>
+                              <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                            </label>
+                            <label class="form-check-label">
+                              <input type="radio" id="oui" class="form-check-input check-partager" name="confirmer" value="oui">
+                              <label for="oui">Oui</label>
+                              <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                            </label>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="button"  class="btn btn-primary confirme-affectation">Confirmer</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

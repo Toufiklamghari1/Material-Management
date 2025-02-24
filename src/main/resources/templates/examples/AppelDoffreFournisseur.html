@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{examples/template}"
+				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				 >
+
+<body>
+
+  
+ 
+ 
+ <!--contenu a remplir -->
+ <div class="content" layout:fragment="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card" style="width: 900px;">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Les Appels D'offres</h4>
+                  <p class="card-category">Les Appels D'offres</p>
+
+                </div>
+                
+                <table class="table">
+						    <thead>
+						        <tr>
+						            <th class="text-center">titre</th>
+						            
+						            <th class="text-center">Date debut de l'offre</th>
+						            <th class="text-center">Date fin de l'offre</th>
+						            <th class="text-center" >Actions</th>
+						        </tr>
+						    </thead>
+						    <tbody>
+						        <tr th:each="offre: ${offres}" >
+						            <td class="text-center" th:text="${offre.titreOffre}">titre</td>
+						            
+						            <td class="text-center" th:text="${offre.DateDebut}">date debut</td>
+						            <td class="text-center" th:text="${offre.DateFin}">2013</td>
+						            <td class="td-actions text-center" th:if="${offre.isTerminated == false}" >
+						               <a th:href="@{/detailOffre(id=${offre.idoffre})}"> <button type="button" rel="tooltip" class="btn btn-success" >
+						         		  afficher plus d'informations
+						                </button></a>
+						            </td>
+						            <td class="td-actions text-center" th:if="${offre.isTerminated == true}" >
+						          		 cet offre est terminé
+						            </td>
+						        </tr>
+						
+						    </tbody>
+						</table>
+                      
+                
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+  
+
+  
+</body>
+
+</html>

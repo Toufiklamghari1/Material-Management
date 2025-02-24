@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{examples/template}"
+				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				 >
+
+<body>
+
+  
+ 
+ 
+ <!--contenu a remplir -->
+ <div class="content" layout:fragment="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Reclamer une panne</h4>
+                  <p class="card-category">veuillez remplir le formulaire</p>
+                </div>
+                <div class="card-body">
+                
+                
+                	<div class="form-check form-check-radio">
+                              <h3>type de materiel</h3>
+                              <label class="form-check-label">
+                                  <input type="radio" id="imprimant" class="form-check-input" name="ressource" value="imprimante">
+                                  <label for="imprimente">imprimente</label>
+                                  <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                              </label>
+                              <label class="form-check-label">
+                                <input type="radio" id="Ordinateure" class="form-check-input" name="ressource" value="ordinateur">
+                                <label for="Ordinateure">Ordinateure</label>
+                                <span class="circle">
+                                    <span class="check"></span>
+                                  </span>
+                              </label>
+                              <br>
+                            
+                           </div>
+            
+            
+           
+			                  
+                  
+                  			<div id="ordinateur" class="hidden">
+                  				<form method="post" th:action="@{/PageAddRessources}" th:object="${ordinateur}">
+			                    <div class="row">
+			                      <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">code de Ressource</label>
+			                          <input type="text" class="form-control" th:field="*{id}">
+			                        </div>
+			                      </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Date de livrison</label>
+			                          <input type="date" class="form-control" th:field="*{dateliv}">
+			                        </div>
+			                      </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-4">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">garantie en nombre de mois</label>
+										    <input type="number" class="form-control" th:field="*{garantie}">
+										</div>
+			                        </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">marque</label>
+										    <input type="text"  class="form-control" th:field="*{marque}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                        <div class="col-md-7">
+			                        	<div class="form-group">
+				                        	<label for="exampleFormControlSelect1">Example select</label>
+										    <select class="form-control" th:field="*{fournisseur}">
+										    		<option th:each="forniss : ${fourni}" th:text="${forniss}" th:value="${forniss}"></option>
+										      
+										    </select>
+									    </div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                        <div class="clearfix"></div>
+			                        <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">La RAM </label>
+										    <input type="number"  class="form-control" th:field="*{ram}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">La ROM</label>
+										    <input type="number"  class="form-control" th:field="*{rom}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">L'ecron</label>
+										    <input type="text"  class="form-control" th:field="*{ecran}"></input>
+										</div>
+			                        </div>
+			                    
+			
+			                    <button type="submit" class="btn btn-primary pull-right">Envoyer</button>
+			                    </div>
+			                    <div class="clearfix"></div>
+			                  </form>
+                  			</div>
+                  			
+                  			
+                   			<div id="imprimante" class="hidden">
+                   					<form method="post" th:action="@{/PageAddRessources}" th:object="${imprimante}">
+			                    <div class="row">
+			                      <div class="col-md-12" style="margin-top:30px; margin-bottom:15px;">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">code de Ressource</label>
+			                          <input type="text" class="form-control" th:field="*{id}">
+			                        </div>
+			                      </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Date de livrison</label>
+			                          <input type="date" class="form-control" th:field="*{dateliv}">
+			                        </div>
+			                      </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-4">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">garantie en nombre de mois</label>
+										    <input type="number" class="form-control" th:field="*{garantie}">
+										</div>
+			                        </div>
+			                      <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">marque</label>
+										    <input type="text"  class="form-control" th:field="*{marque}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                        <div class="col-md-7">
+			                        	<div class="form-group">
+				                        	<label for="exampleFormControlSelect1">Example select</label>
+										    <select class="form-control" th:field="*{fournisseur}">
+										    		<option th:each="forniss : ${fourni}" th:text="${forniss}" th:value="${forniss}"></option>
+										      
+										    </select>
+									    </div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                        <div class="clearfix"></div>
+			                        <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">La resolution </label>
+										    <input type="number"  class="form-control" th:field="*{resolution}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                      <div class="col-md-7">
+			                        	<div class="form-group">
+			                          		<label class="bmd-label-floating">La vetesse d'Impristion</label>
+										    <input type="number"  class="form-control" th:field="*{vetesseImpristion}"></input>
+										</div>
+			                        </div>
+			                        <div class="clearfix"></div>
+			                     
+			                    <button type="submit" class="btn btn-primary pull-right">Envoyer</button>
+			                    
+			                    </div>
+			                    <div class="clearfix"></div>
+			                  </form>
+                   			</div>
+			                
+                
+                  
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+ 
+</body>
+
+</html>
